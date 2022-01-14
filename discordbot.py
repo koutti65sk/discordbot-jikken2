@@ -37,15 +37,14 @@ async def on_message_dm(message):
         
         embed = discord.Embed(title = "DMを受け取りました。",color = 0x4682B4,url = message.jump_url
         )
-        embed.set_image(url = image_url[0])
         embed.set_author(name = bot.user,icon_url = bot.user.avatar_url
         )
         embed.add_field(name="匿名すこん部",value = message.content)
         await channels.send(embed = embed)
+        embed.set_image(url = image_url[0])
         return
     else:
         return
-
 
 token = getenv('DISCORD_BOT_TOKEN')
 bot.run(token)
