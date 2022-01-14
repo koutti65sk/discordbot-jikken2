@@ -3,7 +3,7 @@ from discord.ext import commands
 from os import getenv
 import traceback
 
-intents = discord.Intent.all()
+intents = discord.Intents.all()
 
 bot = commands.Bot(command_prefix='/',intents = intents)
 
