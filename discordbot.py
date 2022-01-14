@@ -30,6 +30,19 @@ async def ping(ctx):
     await ctx.send('pong')
     return
 
+@bot.listen('on_message')
+async def on_message_dm(message):
+    if message.author.bot:
+        return
+        
+    elif type(message.channel) == DMchannel and bot.user == message.channel.me:
+        channel = bot.get_channel(dmchannel)
+        contents = channel.content
+        await channel.send(contents)
+        return
+        
+    else:
+        return
 
 token = getenv('DISCORD_BOT_TOKEN')
 bot.run(token)
