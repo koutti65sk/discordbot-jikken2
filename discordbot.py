@@ -40,11 +40,16 @@ async def on_message_dm(message):
         embed.set_author(name = bot.user,icon_url = bot.user.avatar_url
         )
         if not message.content:
-            embed.add_field(name="匿名すこん部",value = "画像のみ")
+            embed.add_field(name="匿名すこん部",value = "_________________________________")
         else:
-            embed.add_field(name="匿名すこん部",value = message.content)
-        for image in image_url:
-            embed.set_image(url = image)
+            embed.add_field(name="匿名すこん部/n_________________________________",value = message.content)
+        embedimg.append(embed)
+        for x in image_url:
+            embed = discord.Embed()
+            embed.set_image(
+            url=x
+            )
+            embedimg.append(embed)
         await channels.send(embed = embed)
         return
     else:
