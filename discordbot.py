@@ -46,7 +46,7 @@ async def on_message_dm(message):
             embed.add_field(name="匿名すこん部",value = message.content)
         await channels.send(embed = embed)
         
-        embed.set_footer(text = f'{message.created_at + timedelta(hours=9):%Y/%m/%d %H:%M:%S}'
+        embed.set_footer(text = "f'{message.created_at + timedelta(hours=9):%Y/%m/%d %H:%M:%S}'"
         )
         return
     else:
