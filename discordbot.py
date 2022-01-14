@@ -14,11 +14,18 @@ async def on_command_error(ctx, error):
     error_msg = ''.join(traceback.TracebackException.from_exception(orig_error).format())
     channel = bot.get_channel(errorchannel)
     await channel.send(error_msg)
+    return
 
+@bot.event
+async def on_ready():
+    channel = bot.get_channel(logchannel)
+    await channel.send('login')
+    return
 
 @bot.command()
 async def ping(ctx):
     await ctx.send('pong')
+    return
 
 
 token = getenv('DISCORD_BOT_TOKEN')
