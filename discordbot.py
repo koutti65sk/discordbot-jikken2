@@ -35,7 +35,7 @@ async def on_message_dm(message):
         channels = bot.get_channel(dmchannel)
         embed = discord.Embed(title = "DMを受け取りました。",color = 0x4682B4
         )
-        embed.set_author(name = bot.user,icon_url = bot.user.avatar_url
+        embed.set_author(name = bot.user,url = message.jump_url,icon_url = bot.user.avatar_url
         )
         embed.add_field(name="匿名すこん部",value = message.content)
         await channels.send(embed = embed)
