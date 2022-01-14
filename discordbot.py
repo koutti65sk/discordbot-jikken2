@@ -37,7 +37,7 @@ async def on_message_dm(message):
     elif type(message.channel) == discord.DMChannel and bot.user == message.channel.me:
         channels = bot.get_channel(dmchannel)
         contents = message.content
-        await channel.send(contents)
+        await channels.send(contents)
         return
         
     else:
