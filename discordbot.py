@@ -31,10 +31,10 @@ async def ping(ctx):
     return
 
 @bot.listen('on_message')
-async def on_message(message):
+async def on_message_dm(message):
     if message.author.bot:
         return
-    elif type(message.channel) == discord.DMChannel and client.user == message.channel.me:
+    elif type(message.channel) == discord.DMChannel and bot.user == message.channel.me:
         channels = bot.get_channel(dmchannel)
         contents = message.content
         await channel.send(contents)
