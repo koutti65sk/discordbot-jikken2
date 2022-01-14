@@ -4,12 +4,12 @@ from os import getenv
 import traceback
 
 intents = discord.Intents.all()
-
 bot = commands.Bot(command_prefix='/',intents = intents)
 
 errorchannel = 931445563654815776
 logchannel = 928951765867585536
 dmchannel = 931445891481624626
+
 
 @bot.event
 async def on_command_error(ctx, error):
@@ -19,16 +19,13 @@ async def on_command_error(ctx, error):
     await channel.send(error_msg)
     return
 
+
 @bot.event
 async def on_ready():
     channel = bot.get_channel(logchannel)
     await channel.send('login')
     return
 
-@bot.command()
-async def ping(ctx):
-    await ctx.send('pong')
-    return
 
 @bot.listen('on_message')
 async def on_message_dm(message):
@@ -36,12 +33,20 @@ async def on_message_dm(message):
         return
     elif type(message.channel) == discord.DMChannel and bot.user == message.channel.me:
         channels = bot.get_channel(dmchannel)
-        contents = message.content
-        await channels.send(contents)
+        embed = discord.Embed(
+        title = "DMを受け取りました。",
+        color = 0x4682B4
+        )
+        embed.set_author(
+        name = bot.user
+        icon_url = bot.user.avatar_url
+        )
+        embed.add_field(name="匿名すこん部",value = message.content)
+        await channels.send(embed)
         return
-        
     else:
         return
+
 
 token = getenv('DISCORD_BOT_TOKEN')
 bot.run(token)
