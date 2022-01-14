@@ -1,8 +1,11 @@
+import discord
 from discord.ext import commands
 from os import getenv
 import traceback
 
-bot = commands.Bot(command_prefix='/')
+intents = discord.Intent.all()
+
+bot = commands.Bot(command_prefix='/',intents = intents)
 
 errorchannel = 931445563654815776
 logchannel = 928951765867585536
