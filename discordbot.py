@@ -37,7 +37,8 @@ async def on_message_dm(message):
         )
         embed.set_author(name = bot.user,icon_url = bot.user.avatar_url
         )
-        embed.add_field(name="_匿名すこん部_",value = message.content)
+        embed.set_image(url = message.attachments.url)
+        embed.add_field(name="匿名すこん部",value = message.content)
         await channels.send(embed = embed)
         return
     else:
