@@ -25,15 +25,7 @@ async def on_ready():
     channel = bot.get_channel(logchannel)
     await channel.send('login')
     return
-
-async def set_embed(message):
-    embed = discord.Embed(title = "DMを受け取りました。",color = 0x4682B4,url = message.jump_url
-        )
-    embed.set_author(name = bot.user,icon_url = bot.user.avatar_url
-        )
-    embed.add_field(name="匿名すこん部",value = message.content)
-    embed.set_image(url = message.attachment.url[0])
-    return embed
+    
 
 @bot.listen('on_message')
 async def on_message_dm(message):
@@ -41,8 +33,13 @@ async def on_message_dm(message):
         return
     elif type(message.channel) == discord.DMChannel and bot.user == message.channel.me:
         channels = bot.get_channel(dmchannel)
-        embeds = await set_embed(message)
-        await channels.send(embed = embeds)
+        embed = discord.Embed(title = "DMを受け取りました。",color = 0x4682B4,url = message.jump_url
+        )
+        embed.set_author(name = bot.user,icon_url = bot.user.avatar_url
+        )
+        embed.add_field(name="匿名すこん部",value = message.content)
+        embed.set_image(url = message.attachment)
+        await channel.send(embed = embed)
         return
     else:
         return
