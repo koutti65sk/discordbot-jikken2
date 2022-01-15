@@ -51,7 +51,7 @@ async def on_message_dm(message):
                 )
                 fin_message.append(embed)
         for embed in message.embeds:
-            sent_messages.append(embed)
+            fin_message.append(embed)
         await channels.send(embeds = fin_message)
         return
     else:
