@@ -43,16 +43,16 @@ async def on_message_dm(message):
         channels = bot.get_channel(dmchannel)
         if message.content or message.attachments:
             embeds = await set_embed(message)
-            fin_message.append(embed)
+            fin_message.append(embeds)
             for attachment in message.attachments[1:]:
                 embed = discord.Embed()
                 embed.set_image(
-                url=attachment.proxy_url
+                url = attachment.proxy_url
                 )
                 fin_message.append(embed)
         for embed in message.embeds:
             sent_messages.append(embed)
-        await channel.send(embeds = fin_message)
+        await channels.send(embeds = fin_message)
         return
     else:
         return
