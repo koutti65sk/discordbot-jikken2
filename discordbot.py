@@ -42,7 +42,7 @@ async def on_message_dm(message):
         embed.add_field(
         name="匿名すこん部",value = message.content)
         if message.attachments and message.attachments[0].proxy_url:
-        embed.set_image(
+            embed.set_image(
             url=message.attachments[0].proxy_url
         )
         await channel.send(embed = embed)
