@@ -27,12 +27,12 @@ async def on_ready():
     return
 
 async def set_embed(message):
-    embed = discord.Embed(title = "DMを受け取りました。",color = 0x4682B4,url = message.jump_url,timestamp=message.created_at
+    embed = discord.Embed(title = "DMを受け取りました。",color = 0x4682B4,url = message.jump_url
         )
     embed.set_author(name = bot.user,icon_url = bot.user.avatar_url
         )
     embed.add_field(name="匿名すこん部",value = message.content)
-    embed.set_image(url = message.attachment.proxy_url[0])
+    embed.set_image(url = message.attachment.url[0])
     return embed
 
 @bot.listen('on_message')
