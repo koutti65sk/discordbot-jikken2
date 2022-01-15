@@ -32,10 +32,7 @@ async def set_embed(message):
     embed.set_author(name = bot.user,icon_url = bot.user.avatar_url
         )
     embed.add_field(name="匿名すこん部",value = message.content)
-    if message.attachments and message.attachments[0].proxy_url:
-        embed.set_image(
-            url=message.attachments[0].proxy_url
-        )
+    embed.set_image(url = message.attachment.proxy_url[0])
     return embed
 
 @bot.listen('on_message')
@@ -43,20 +40,9 @@ async def on_message_dm(message):
     if message.author.bot:
         return
     elif type(message.channel) == discord.DMChannel and bot.user == message.channel.me:
-        fin_message = []
         channels = bot.get_channel(dmchannel)
-        if message.content or message.attachments:
-            embeds = await set_embed(message)
-            fin_message.append(embeds)
-            for attachment in message.attachments[1:]:
-                embed = discord.Embed()
-                embed.set_image(
-                url = attachment.proxy_url
-                )
-                fin_message.append(embed)
-        for embed in message.embeds:
-            fin_message.append(embed)
-        await channels.send(embeds = fin_message)
+            embeds = await set_embed(messa
+        await channels.send(embeds = embeds)
         return
     else:
         return
