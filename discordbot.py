@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 from os import getenv
 import traceback
-import datetime
+from datetime import datetime, timedelta
 
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='/',intents = intents)
@@ -24,7 +24,8 @@ async def on_command_error(ctx, error):
 @bot.event
 async def on_ready():
     channel = bot.get_channel(logchannel)
-    await channel.send('login')
+    now = datetime.now()
+    await channel.send(f'起動完了({now.astimezone(jst):%m/%d-%H:%M:%S}))
     return
     
 
