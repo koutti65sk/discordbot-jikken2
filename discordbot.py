@@ -2,7 +2,6 @@ import discord
 from discord.ext import commands
 from os import getenv
 import traceback
-from datetime import datetime, timedelta, timezone
 
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='/',intents = intents)
@@ -24,8 +23,7 @@ async def on_command_error(ctx, error):
 @bot.event
 async def on_ready():
     channel = bot.get_channel(logchannel)
-    now = datetime.now()
-    await channel.send(f'起動完了({now.astimezone(jst):%m/%d-%H:%M:%S})')
+    await channel.send('login')
     return
     
 
@@ -35,16 +33,15 @@ async def on_message_dm(message):
         return
     elif type(message.channel) == discord.DMChannel and bot.user == message.channel.me:
         channel = bot.get_channel(dmchannel)
-        now = datetime.utcnow()
         embed = discord.Embed(
-        title = "DMを受け取りました。",color = 0x4682B4,url = message.jump_url,description = message.content,timestamp = now
+        title = "DMを受け取りました。",color = 0x4682B4,url = message.jump_url,description = message.content
         )
         embed.set_author(
         name = bot.user,icon_url = bot.user.avatar_url
         )
         if message.attachments and message.attachments[0].proxy_url:
             embed.set_image(
-            url = message.attachments[0].proxy_url
+            url=message.attachments[0].proxy_url
         )
         await channel.send(embed = embed)
         return
