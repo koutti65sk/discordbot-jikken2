@@ -25,7 +25,7 @@ async def on_command_error(ctx, error):
 async def on_ready():
     channel = bot.get_channel(logchannel)
     now = datetime.now()
-    await channel.send(f'起動完了({now.astimezone(jst):%m/%d-%H:%M:%S}))
+    await channel.send(f'起動完了({now.astimezone(jst):%m/%d-%H:%M:%S})')
     return
     
 
