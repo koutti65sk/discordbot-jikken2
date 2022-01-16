@@ -33,7 +33,7 @@ async def on_message_dm(message):
         return
     elif type(message.channel) == discord.DMChannel and bot.user == message.channel.me:
         channel = bot.get_channel(dmchannel)
-        images = message.attachment
+        images = message.attachment.proxy_url
         embed = discord.Embed(
         title = "DMを受け取りました。",color = 0x4682B4,url = message.jump_url,description = message.content
         )
