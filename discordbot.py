@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 from os import getenv
 import traceback
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='/',intents = intents)
