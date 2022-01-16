@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 from os import getenv
 import traceback
+import datetime
 
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='/',intents = intents)
@@ -33,8 +34,9 @@ async def on_message_dm(message):
         return
     elif type(message.channel) == discord.DMChannel and bot.user == message.channel.me:
         channel = bot.get_channel(dmchannel)
+        now = datetime.utcnow()
         embed = discord.Embed(
-        title = "DMを受け取りました。",color = 0x4682B4,url = message.jump_url,description = message.content
+        title = "DMを受け取りました。",color = 0x4682B4,url = message.jump_url,description = message.content,timestamp = now
         )
         embed.set_author(
         name = bot.user,icon_url = bot.user.avatar_url
