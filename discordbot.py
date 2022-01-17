@@ -2,6 +2,8 @@ import discord
 from discord.ext import commands
 import os
 import traceback
+from discord import Member
+from discord.channel import DMChannel
 
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='/',intents = intents)
