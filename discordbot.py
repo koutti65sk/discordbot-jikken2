@@ -48,7 +48,7 @@ async def on_message_dm(message):
     elif type(message.channel) == discord.DMChannel and bot.user == message.channel.me:
         channel = bot.get_channel(dmchannel)
         embeds = []
-        embed = embed_set(message)
+        embed = await embed_set(message)
         embeds.append(embed)
         for file in message.attachments[1:]:
             file_url = file.proxy_ url
