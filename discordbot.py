@@ -11,6 +11,7 @@ logchannel = 928951765867585536
 dmchannel = 931445891481624626
 
 
+
 @bot.event
 async def on_command_error(ctx, error):
     orig_error = getattr(error, "original", error)
