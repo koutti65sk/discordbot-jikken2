@@ -1,6 +1,6 @@
 import discord
 from discord.ext import commands
-from os import getenv
+import os
 import traceback
 
 intents = discord.Intents.all()
@@ -55,7 +55,7 @@ async def on_message_dm(message):
             embed = discord.Embed()
             embed.set_image(url = file_url)
             embeds.append(embed)
-await channel.send(embeds = embeds)
+            await channel.send(embeds = embeds)
 
-token = getenv('DISCORD_BOT_TOKEN')
+token = os.environ('DISCORD_BOT_TOKEN')
 bot.run(token)
