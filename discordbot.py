@@ -51,7 +51,7 @@ async def on_message_dm(message):
         embed = embed_set(message)
         embeds.append(embed)
         for file_ in message.attachments[1:]:
-            file_url = file_.url
+            file_url = file_.proxy_ url
             embed = discord.Embed()
             embed.set_image(url = file_url)
             embeds.append(embed)
