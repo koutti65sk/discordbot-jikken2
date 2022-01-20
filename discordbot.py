@@ -59,7 +59,8 @@ async def on_message_dm(message):
             embeds.append(embed)
         for embed in message.embeds:
             embeds.append(embed)
-        await channel.send(embeds = embeds)
+    await channel.send(embeds = embeds)
+    return
 
 token = os.environ['DISCORD_BOT_TOKEN']
 bot.run(token)
