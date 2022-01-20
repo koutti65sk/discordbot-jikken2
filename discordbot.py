@@ -57,7 +57,7 @@ async def on_message_dm(message):
             embed = discord.Embed()
             embed.set_image(url = file_url)
             embeds.append(embed)
-        await channel.send(embeds = embeds)
+        await channel.send(embed = embeds)
         return
     else:
         return
