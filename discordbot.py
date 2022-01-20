@@ -53,12 +53,12 @@ async def on_message_dm(message):
         embed = await embed_set(message)
         embeds.append(embed)
         for file in message.attachments[1:]:
-            file_url = file.proxy_ url
+            file_url = file.proxy_url
             embed = discord.Embed()
             embed.set_image(url = file_url)
             embeds.append(embed)
         for embed in message.embeds:
-            sent_messages.append(embed)
+            embeds.append(embed)
         await channel.send(embeds = embeds)
 
 token = os.environ['DISCORD_BOT_TOKEN']
