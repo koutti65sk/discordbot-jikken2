@@ -2,8 +2,6 @@ import discord
 from discord.ext import commands
 import os
 import traceback
-from discord import Member
-from discord.channel import DMChannel
 
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='/',intents = intents)
@@ -44,8 +42,8 @@ async def on_message_dm(message):
         if message.attachments and message.attachments[0].proxy_url:
             embed.set_image(
             url=message.attachments[0].proxy_url
-        )
-        await channel.send(embed = sendm)
+            )
+        await channel.send(embed = embed)
         return
     else:
         return
