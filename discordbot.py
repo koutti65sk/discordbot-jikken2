@@ -45,7 +45,7 @@ async def on_message_dm(message):
             embed.set_image(
             url=message.attachments[0].proxy_url
         )
-        await channel.send(embeds = sendms)
+        await channel.send(embed = sendm)
         return
     else:
         return
