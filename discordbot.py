@@ -29,34 +29,22 @@ async def on_ready():
     return
     
 
-async def embed_set(message):
-    embed = discord.Embed(
-    title = "DMを受け取りました。",color = 0x4682B4,url = message.jump_url,description = message.content
-    )
-    embed.set_author(
-    name = bot.user,icon_url = bot.user.avatar_url
-    )
-    if message.attachments and message.attachments[0].proxy_url:
-        embed.set_image(
-        url=message.attachments[0].proxy_url
-    )
-    return embed
-
-
 @bot.listen('on_message')
 async def on_message_dm(message):
     if message.author.bot:
         return
     elif type(message.channel) == discord.DMChannel and bot.user == message.channel.me:
         channel = bot.get_channel(dmchannel)
-        sendms = []
-        embed = await embed_set(message)
-        sendms.append(embed)
-        for file in message.attachments[1:]:
-            file_url = file.proxy_url
-            embed = discord.Embed()
-            embed.set_image(url = file_url)
-            sendms.append(embed)
+        embed = discord.Embed(
+        title = "DMを受け取りました。",color = 0x4682B4,url = message.jump_url,description = message.content
+        )
+        embed.set_author(
+        name = bot.user,icon_url = bot.user.avatar_url
+        )
+        if message.attachments and message.attachments[0].proxy_url:
+            embed.set_image(
+            url=message.attachments[0].proxy_url
+        )
         await channel.send(embeds = sendms)
         return
     else:
