@@ -37,12 +37,14 @@ async def on_message_dm(message):
         embed = await set_embed(message)
         sent_message.append(embed)
         if message.attachments and message.attachments[0].proxy_url:
-            for attachment in message.attachments:
+            for attachment in message.attachments[0:]:
                 embed = discord.Embed()
                 embed.set_image(
                 url=attachment.proxy_url
                 )
                 sent_message.append(embed)
+        else:
+            return
         await channel.send(embeds = sent_message)
         return
     else:
