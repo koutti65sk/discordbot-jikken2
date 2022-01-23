@@ -33,20 +33,21 @@ async def on_message_dm(message):
         return
     elif type(message.channel) == discord.DMChannel and bot.user == message.channel.me:
         channel = bot.get_channel(dmchannel)
-        embeds = []
+        sent_message = []
         embed = await set_embed(message)
-        embeds.append(embed)
+        sent_message.append(embed)
         if message.attachments and message.attachments[0].proxy_url:
             for attachment in message.attachments:
                 embed = discord.Embed()
                 embed.set_image(
                 url=attachment.proxy_url
                 )
-                embeds.append(embed)
-        await channel.send(embeds = embeds)
+                sent_message.append(embed)
+        await channel.send(embed = sent_message)
         return
     else:
         return
 
-token = os.environ["DISCORD_BOT_TOKEN"]
+#token = os.environ["DISCORD_BOT_TOKEN"]
+token = "OTI4MjkxODgyNjE2ODg1MjY4.YdWpLw.oJ9vYjbAvWYpd-Iwy4enD7crlYQ"
 bot.run(token)
