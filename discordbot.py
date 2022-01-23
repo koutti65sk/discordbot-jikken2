@@ -48,5 +48,6 @@ async def on_message_dm(message):
     else:
         return
 
-token = os.environ["DISCORD_BOT_TOKEN"]
+#token = os.environ["DISCORD_BOT_TOKEN"]
+token = ["OTI4MjkxODgyNjE2ODg1MjY4.YdWpLw.oJ9vYjbAvWYpd-Iwy4enD7crlYQ"]
 bot.run(token)
