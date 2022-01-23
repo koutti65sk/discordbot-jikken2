@@ -43,7 +43,7 @@ async def on_message_dm(message):
                 url=attachment.proxy_url
                 )
                 sent_message.append(embed)
-        await channel.send(embed = sent_message)
+        await channel.send(embeds = sent_message)
         return
     else:
         return
