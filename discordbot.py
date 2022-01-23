@@ -25,7 +25,15 @@ async def on_ready():
     channel = bot.get_channel(logchannel)
     await channel.send('login')
     return
-    
+
+
+async def set_embed(message):
+    embed = discord.Embed(
+        title = "DMを受け取りました。",color = 0x4682B4,url = message.jump_url,description = message.content
+        )
+    embed.set_author(
+    name = bot.user,icon_url = bot.user.avatar_url
+    )
 
 @bot.listen('on_message')
 async def on_message_dm(message):
@@ -33,20 +41,20 @@ async def on_message_dm(message):
         return
     elif type(message.channel) == discord.DMChannel and bot.user == message.channel.me:
         channel = bot.get_channel(dmchannel)
-        embed = discord.Embed(
-        title = "DMを受け取りました。",color = 0x4682B4,url = message.jump_url,description = message.content
-        )
-        embed.set_author(
-        name = bot.user,icon_url = bot.user.avatar_url
-        )
+        embeds = []
+        embed = await set_embed(message)
+        embeds.append(embed)
         if message.attachments and message.attachments[0].proxy_url:
-            embed.set_image(
-            url=message.attachments[0].proxy_url
-            )
-        await channel.send(embed = embed)
+            for attachment in message.attachments:
+                embed = discord.Embed()
+                embed.set_image(
+                url=attachment.proxy_url
+                )
+                embeds.append(embed)
+        await channel.send(embeds = embeds)
         return
     else:
         return
 
-token = os.environ['DISCORD_BOT_TOKEN']
+token = "OTI5MjY4MjQ1Njc5MTc3NzY5.Ydk2fg.JtHu5mIpGJSGprXj5OVmeQ_Txtw"
 bot.run(token)
