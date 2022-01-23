@@ -34,6 +34,7 @@ async def set_embed(message):
     embed.set_author(
     name = bot.user,icon_url = bot.user.avatar_url
     )
+    return embed
 
 @bot.listen('on_message')
 async def on_message_dm(message):
