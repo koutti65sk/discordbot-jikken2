@@ -16,8 +16,9 @@ def jst():
 
 @bot.event
 async def on_ready():
+    now = jst()
     channel = bot.get_channel(logchannel)
-    await channel.send('login')
+    await channel.send(f'ログインしたよ。({now: %Y /%m / %d　 %H : %M : %S})')
     return
 
 @bot.event
