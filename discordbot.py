@@ -24,6 +24,8 @@ async def on_ready():
 @bot.event
 async def on_message_delete(message):
     now = jst()
+    if message.author.bot:
+        return
     embed = discord.Embed(title="メッセージ削除ログ", color=discord.Color.red())
     if message.content:
         embed.add_field(name="メッセージ内容", value=message.content, inline=False)
