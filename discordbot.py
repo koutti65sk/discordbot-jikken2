@@ -18,7 +18,7 @@ def jst():
 async def on_ready():
     now = jst()
     channel = bot.get_channel(logchannel)
-    await channel.send(f'ログインしたよ。\n時刻({now: %m / %d  %H : %M : %S})')
+    await channel.send(f'ログインしたよ。\n時刻({now: %y / %m / %d  %H : %M : %S})')
     return
 
 @bot.event
@@ -26,7 +26,11 @@ async def on_message_delete(message):
     now = jst()
     embed = discord.Embed(title="メッセージ削除ログ", color=discord.Color.red())
     embed.add_field(name="メッセージ内容", value=message.content, inline=False)
-    embed.add_field(name="時刻", value=now.strftime('%m / %d  %H : %M : %S'), inline=False)
+    if message.attachments:
+        embed.add_field(name="ファイルの有無", value='あり')
+    else:
+        embed.add_field(name="ファイルの有無", value='なし')
+    embed.add_field(name="時刻", value=now.strftime('%y / %m / %d  %H : %M : %S'), inline=False)
     embed.add_field(name="チャンネル", value=message.channel.mention, inline=False)
     embed.set_footer(icon_url=message.author.avatar_url, text=message.author.display_name)
     channel = bot.get_channel(delchannel)
