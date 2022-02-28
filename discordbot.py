@@ -73,18 +73,18 @@ def move_position(direction, pos):
 @bot.command()
 async def suika_wari(ctx):
     BOARD_SIZE = 5  # ボードの初期サイズ
-    suika_pos = generate_position(BOARD_SIZE)
-    player_pos = generate_position(BOARD_SIZE)
+    suika_pos = await generate_position(BOARD_SIZE)
+    player_pos = await generate_position(BOARD_SIZE)
 
     # スイカとプレイヤーの位置が異なる間、処理を繰り返す
     while (suika_pos != player_pos):
         # スイカとプレイヤーの距離を表示する
-        distance = calc_distance(suika_pos, player_pos)
+        distance = await calc_distance(suika_pos, player_pos)
         await ctx.send("スイカへの距離:", distance)
 
         # キー入力に応じて、プレイヤーを移動する
         c = await(input("n:北に移動 s:南に移動 e:東に移動 w:西に移動"))
-        player_pos = move_position(c, player_pos)
+        player_pos = await move_position(c, player_pos)
     await ctx.send('スイカを割りました！')
 
 
