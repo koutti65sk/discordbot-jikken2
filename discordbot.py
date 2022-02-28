@@ -80,7 +80,7 @@ async def suika_wari(ctx):
     while (suika_pos != player_pos):
         # スイカとプレイヤーの距離を表示する
         distance = calc_distance(suika_pos, player_pos)
-        print("スイカへの距離:", distance)
+        await ctx.send("スイカへの距離:", distance)
 
         # キー入力に応じて、プレイヤーを移動する
         c = await(input("n:北に移動 s:南に移動 e:東に移動 w:西に移動"))
